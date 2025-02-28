@@ -22,6 +22,8 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
+    model_path = os.path.join(get_package_share_directory('tcebot_sim'), 'models')
+    os.environ['GZ_SIM_RESOURCE_PATH'] = model_path + ':' + os.environ.get('GZ_SIM_RESOURCE_PATH', '')
     # Get the launch directory
     sim_dir = get_package_share_directory('tcebot_sim')
     desc_dir = get_package_share_directory('tcebot_description')
@@ -38,8 +40,8 @@ def generate_launch_description():
     headless = LaunchConfiguration('headless')
     world = LaunchConfiguration('world')
     pose = {
-        'x': LaunchConfiguration('x_pose', default='-8.00'),
-        'y': LaunchConfiguration('y_pose', default='0.00'),
+        'x': LaunchConfiguration('x_pose', default='-8.00'), # for arena - 0.00 for depot - -8.00
+        'y': LaunchConfiguration('y_pose', default='0.00'), # for arena - -0.05
         'z': LaunchConfiguration('z_pose', default='0.01'),
         'R': LaunchConfiguration('roll', default='0.00'),
         'P': LaunchConfiguration('pitch', default='0.00'),

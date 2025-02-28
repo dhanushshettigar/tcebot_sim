@@ -2,10 +2,15 @@
 <sdf version="1.6" xmlns:xacro="http://www.ros.org/wiki/xacro"
   xmlns:experimental="http://sdformat.org/schemas/experimental">
   <xacro:arg name="headless" default="true" />
-  <world name="depot">
+  <world name="arena_maze">
+
     <scene>
-      <grid>false</grid>
+      <ambient>1 1 1 1</ambient>
+      <background>0.8 0.8 0.8 1.0</background>
+      <shadows>1</shadows>
+      <grid>0</grid>
     </scene>
+
     <physics name="1ms" type="ode">
       <max_step_size>0.003</max_step_size>
       <real_time_update_rate>1000.0</real_time_update_rate>
@@ -36,19 +41,33 @@
       name="gz::sim::systems::Imu">
     </plugin>
 
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>1 1</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode />
+            </friction>
+            <bounce />
+            <contact />
+          </surface>
+        </collision>
+      </link>
+      <pose>0 0 0 0 0 0</pose>
+    </model>
+
+
     <include>
       <uri>
-        https://fuel.gazebosim.org/1.0/OpenRobotics/models/Depot
+        model://Arena_Maze
       </uri>
-
-      <!-- Remove annoying things that get in the way of visualizing the robot -->
-      <experimental:params>
-        <visual element_id="Fan1::visual" action="remove" />
-        <visual element_id="Fan2::visual" action="remove" />
-        <visual element_id="main::ROOF_visual" action="remove" />
-        <visual element_id="main::FANS_visual" action="remove" />
-      </experimental:params>
-
     </include>
 
   </world>

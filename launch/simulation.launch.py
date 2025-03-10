@@ -40,8 +40,8 @@ def generate_launch_description():
     headless = LaunchConfiguration('headless')
     world = LaunchConfiguration('world')
     pose = {
-        'x': LaunchConfiguration('x_pose', default='-8.00'), # for arena - 0.00 for depot - -8.00
-        'y': LaunchConfiguration('y_pose', default='0.00'), # for arena - -0.05
+        'x': LaunchConfiguration('x_pose', default='-8.00'), # for arena: -0.45 ; depot: -8.00
+        'y': LaunchConfiguration('y_pose', default='0.00'), # for arena: -0.045 ;
         'z': LaunchConfiguration('z_pose', default='0.01'),
         'R': LaunchConfiguration('roll', default='0.00'),
         'P': LaunchConfiguration('pitch', default='0.00'),

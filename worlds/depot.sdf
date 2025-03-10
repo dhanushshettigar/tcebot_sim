@@ -2,7 +2,7 @@
 <sdf version="1.6" xmlns:xacro="http://www.ros.org/wiki/xacro"
   xmlns:experimental="http://sdformat.org/schemas/experimental">
   <xacro:arg name="headless" default="true" />
-  <world name="depot">
+  <world name="gazebo_world">
     <scene>
       <grid>false</grid>
     </scene>
